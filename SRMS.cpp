@@ -8,7 +8,6 @@ struct Student {
     int attCoding = 0, attCPP = 0, attDAA = 0;
 };
 
-// -------- Utility I/O ----------
 Student deserialize(const string &line) {
     Student s; string token; stringstream ss(line);
     getline(ss, s.id, '|'); getline(ss, s.name, '|');
@@ -16,7 +15,6 @@ Student deserialize(const string &line) {
     getline(ss, s.password, '|'); getline(ss, s.club, '|');
     getline(ss, s.semResult, '|');
 
-    // safe numeric parsing
     if (getline(ss, token, '|') && !token.empty()) s.attCoding = stoi(token);
     if (getline(ss, token, '|') && !token.empty()) s.attCPP = stoi(token);
     if (getline(ss, token, '|') && !token.empty()) s.attDAA = stoi(token);
@@ -59,7 +57,6 @@ void updateStudent(const Student &s) {
     rename("temp.txt", "students.txt");
 }
 
-// -------- Common Display ----------
 void showBasic(const Student &s) {
     cout << "ID: " << s.id << "\nName: " << s.name
          << "\nDept: " << s.department << "\nEmail: " << s.email << endl;
@@ -73,7 +70,6 @@ void showFull(const Student &s) {
          << "\nDAA: " << s.attDAA << "%\n";
 }
 
-// --------- Features --------------
 void addStudent() {
     Student s;
     cout << "\nEnter Student ID: "; cin >> s.id;
@@ -163,7 +159,6 @@ void studentLogin() {
     showFull(s);
 }
 
-// -------- Menus --------
 void adminMenu() {
     int c;
     while (true) {
@@ -189,7 +184,6 @@ void staffMenu() {
     }
 }
 
-// -------- Login Handlers --------
 void adminLogin() {
     string u, p;
     cout << "Username: "; cin >> u;
@@ -222,7 +216,6 @@ void guestLogin() {
     }
 }
 
-// -------- Main --------
 int main() {
     int c;
     while (true) {
@@ -232,7 +225,6 @@ int main() {
         else if (c == 2) staffLogin();
         else if (c == 3) studentLogin();
         else if (c== 4)  guestLogin();
-           // Guest can only view by roll number
 
 
         else if (c == 5) break;
@@ -240,3 +232,4 @@ int main() {
     }
     return 0;
 }
+
